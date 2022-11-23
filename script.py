@@ -42,10 +42,12 @@ else:
     a2_result = 0
     print('Ups! Not exaclty.\nThere is no Protocol manager in the Kernel\n')
 
+input('Hit ENTER for next \n')
+
 # Question 3
-print('Question \nThe following statement requires a Boolean answer.\n\nA compiler programming language can be run on different platforms, regardless for what system it was built into.')
+print('Question 3\nThe following statement requires a Boolean answer.\n\nA compiler programming language can be run on different platforms, regardless for what system it was built into.')
 a3=bool(input('Is it true or false?'))
-if a3==0:
+if a3==0 or a3==False:
     print(f'You nailed it, {name}!')
     a3_result=1
 else:
@@ -53,3 +55,35 @@ else:
     a3_result=0
 
 input('Next question? \n')
+
+# Question 4
+print('Question 4\n  What would be the correct result for the following operation?\n 24 // 10\n')
+a4=int(input('24 // 10 = '))
+if a4==2:
+    print('You are a genius!\n')
+    a4_result=1
+else:
+    print('The operator // gives the quotient when 24 is divided by 10, rounded to the next smallest whole number.\n')
+    a4_result=0
+
+input('You are almost there.\n')
+
+#Question 5
+print('#!/usr/bin/env python\nsum = 0\ncount = 0\n_____ count < 5:\n   n = input("Please specify a number: ")\n   sum = sum + n\n   count = count + 1\nprint("The sum is " + str(sum)\n\n')
+a5=(input('What is the missing command in the script?: \n'))
+if a5=='WHILE' or 'while' or 'While':
+    print('You are a truly PYTHONist!')
+    a5_result=1
+else:
+    print('The missing command is WHILE\nA while loop will repeat the instruction(s) inside the loop-body, as long a condition is True')
+
+input('You are done!\nHit ENTER to see your score\n\n')
+
+#Score
+total_score=a1_result+a2_result+a3_result+a4_result+a5_result
+print(f'Your total score is {total_score}!')
+if total_score >= 3:
+    print("You passed the TEST!")
+else:
+    print("Let's review the slides one more time and try again")
+    
