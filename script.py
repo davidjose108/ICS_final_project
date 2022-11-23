@@ -46,8 +46,10 @@
 
 # Question 3
 print('Question 3\nThe following statement requires a Boolean answer.\n\nA compiler programming language can be run on different platforms, regardless for what system it was built into.')
-a3=input('Is it true or false? ')
-if a3 == 'false':
+a3=input('Is it True or False? ')
+while a3 != 'False' or a3 != 'True':
+    print('Try again.\nThis question only accepts Boolean values.')
+if a3 == 'False':
     a3=False
 if a3==False:
     print(f'You nailed it, !')
