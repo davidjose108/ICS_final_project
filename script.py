@@ -9,7 +9,7 @@
 
 # Introduction
 name = input('Welcome to Test Your Knowledge\n Please enter your name: ')
-print(f'Welcome {name}! \n You will be presented with five questions related to Computer Sciences. \n If you get more than three questions right, you passed!')
+print(f'Welcome {name}! \n\nYou will be presented with five questions related to Computer Sciences. \nIf you get more than three questions right, you passed!')
 print('')
 input ('Are you ready? ')
 print('')
@@ -24,8 +24,7 @@ else:
     a1_result = 0
     print('Not quite :( \nThe correct answer is 11000010\n')
 
-input('Next question? ')
-print('')
+input('Next question? \n')
 
 # Question 2
 print('Question 2\nAn Operating System is divided into Kernel and User Interface\nIn the kernel, there are several managers, which of the following is NOT inside the kernel: ')
@@ -42,3 +41,15 @@ if a2 == 'e':
 else:
     a2_result = 0
     print('Ups! Not exaclty.\nThere is no Protocol manager in the Kernel\n')
+
+# Question 3
+print('Question \nThe following statement requires a Boolean answer.\n\nA compiler programming language can be run on different platforms, regardless for what system it was built into.')
+a3=bool(input('Is it true or false?'))
+if a3==0:
+    print(f'You nailed it, {name}!')
+    a3_result=1
+else:
+    print("A compiler language writes for an specific OS.\nThe instructions in binary code in WindowsOS are different from MacOS.\n")
+    a3_result=0
+
+input('Next question? \n')
