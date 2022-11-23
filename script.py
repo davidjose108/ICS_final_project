@@ -57,7 +57,7 @@ else:
 input('Next question? \n')
 
 # Question 4
-print('Question 4\n  What would be the correct result for the following operation?\n 24 // 10\n')
+print('Question 4\n  What would be the correct result for the following operation?')
 a4=int(input('24 // 10 = '))
 if a4==2:
     print('You are a genius!\n')
@@ -77,7 +77,7 @@ if a5=='WHILE' or 'while' or 'While':
 else:
     print('The missing command is WHILE\nA while loop will repeat the instruction(s) inside the loop-body, as long a condition is True')
 
-input('You are done!\nHit ENTER to see your score\n\n')
+input('You are done!\nHit ENTER to see your score\n')
 
 #Score
 total_score=a1_result+a2_result+a3_result+a4_result+a5_result
