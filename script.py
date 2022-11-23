@@ -8,6 +8,7 @@
 # # Otherwise, it is a FAIL. 
 
 # Introduction
+print(24//10)
 name = input('Welcome to Test Your Knowledge\n Please enter your name: ')
 print(f'Welcome {name}! \n\nYou will be presented with five questions related to Computer Sciences. \nIf you get more than three questions right, you passed!')
 print('')
@@ -16,8 +17,8 @@ print('')
 
 # Question 1
 print('Question 1\nWrite in binary the following number: 194 \n 128     64      32      16      8       4       2       1')
-a1=int(input('194 in binary: \nRemember to write in 8 bits, e.g. 20 = 00010100\n'))
-if a1 == 11000010:
+a1=input('194 in binary: \nRemember to write in 8 bits, e.g. 20 = 00010100\n')
+if a1 == '11000010':
     a1_result = 1
     print(f'Correct, {name}!\n')
 else:
@@ -53,7 +54,7 @@ while a3!='False' and a3!='True':
 if a3 == 'False':
     a3=False
 if a3==False:
-    print(f'You nailed it, !')
+    print(f'You nailed it, {name}!\n')
     a3_result=1
 else:
     print("It is False.\nA compiler language writes for an specific OS.\nThe instructions in binary code in WindowsOS are different from MacOS.\n")
@@ -63,26 +64,26 @@ input('Next question? \n')
 
 # Question 4
 print('Question 4\n  What would be the correct result for the following operation?')
-a4=int(input('24 // 10 = '))
-if a4==2:
+a4=input('24 // 10 = ')
+if a4=='2':
     print('You are a genius!\n')
     a4_result=1
 else:
-    print('The operator // gives the quotient when 24 is divided by 10, rounded to the next smallest whole number.\n')
+    print('The right naswer is 2.\nThe operator // gives the quotient when 24 is divided by 10, rounded to the next smallest whole number.\n')
     a4_result=0
 
 input('You are almost there.\n')
 
 #Question 5
-print('#!/usr/bin/env python\nsum = 0\ncount = 0\n_____ count < 5:\n   n = input("Please specify a number: ")\n   sum = sum + n\n   count = count + 1\nprint("The sum is " + str(sum)\n\n')
+print('Question 5\n\n#!/usr/bin/env python\nsum = 0\ncount = 0\n_____ count < 5:\n   n = input("Please specify a number: ")\n   sum = sum + n\n   count = count + 1\nprint("The sum is " + str(sum)\n\n')
 a5=(input('What is the missing command in the script?: \n'))
-if a5=='WHILE' or 'while' or 'While':
+if a5=='WHILE' or a5=='while' or a5=='While':
     print('You are a truly PYTHONist!')
     a5_result=1
 else:
     print('The missing command is WHILE\nA while loop will repeat the instruction(s) inside the loop-body, as long a condition is True')
-
-input('You are done!\nHit ENTER to see your score\n')
+    a5_result=0
+input('You are done!\n\nHit ENTER to see your score\n')
 
 #Score
 total_score=a1_result+a2_result+a3_result+a4_result+a5_result
@@ -90,5 +91,5 @@ print(f'Your total score is {total_score}!')
 if total_score >= 3:
     print("You passed the TEST!")
 else:
-    print("Let's review the slides one more time and try again")
+    print("Let's review the slides one more time and try again\n")
     
