@@ -8,48 +8,54 @@
 # # Otherwise, it is a FAIL. 
 
 # Introduction
-print(24//10)
-name = input('Welcome to Test Your Knowledge\n Please enter your name: ')
-print(f'Welcome {name}! \n\nYou will be presented with five questions related to Computer Sciences. \nIf you get more than three questions right, you passed!')
+name = input('Welcome to Test Your Knowledge\nPlease enter your name: \n')
+print(f'\nWelcome {name}! \n\nYou will be presented with five questions related to Computer Sciences. \nIf you get more than three questions right, you passed!')
 print('')
 input ('Are you ready? ')
 print('')
 
 # Question 1
 
-import random
-number = random.randint(0, 255)
-number_in_binary = "{:08b}".format(number)
-print(f'Question 1\nWrite in binary the following number:{number}  \n 128     64      32      16      8       4       2       1')
-a1=input(f'{number} in binary: \nRemember to write in 8 bits, e.g. 20 = 00010100\n')
-if a1 == number_in_binary:
-    a1_result = 1
-    print(f'Correct, {name}!\n')
-else:
-    a1_result = 0
-    print('Not quite :( \nThe correct answer is 11000010\n')
-
-
+# import random
+# number = random.randint(0, 255)
+# number_in_binary = "{:08b}".format(number)
+# print(f'Question 1\nWrite in binary the following number:{number}  \n128     64      32      16      8       4       2       1\n')
+# a1=input(f'Remember to write in 8 bits, e.g. 20 = 00010100\n{number} in binary = ')
+# while len(a1)!=8:
+#     print('\nTry again.\n')
+#     a1=input(f'Remember to write in 8 bits, e.g. 20 = 00010100\n128     64      32      16      8       4       2       1\n{number} in binary = ')
+# if a1 == number_in_binary:
+#     a1_result = 1
+#     print(f'\nCorrect, {name}!\n')
+# else:
+#     a1_result = 0
+#     print(f'\nNot quite :( \nThe correct answer is {number_in_binary}\n')
 
 # input('Next question? \n')
 
-# # Question 2
-# print('Question 2\nAn Operating System is divided into Kernel and User Interface\nIn the kernel, there are several managers, which of the following is NOT inside the kernel: ')
-# a = 'a) File manager'
-# b = 'b) Memory manager'
-# c = 'c) I/O Manager'
-# d = 'd) Process manager'
-# e = 'e) Protocol manager'
-# print(f'{a}\n{b}\n{c}\n{d}\n{e}')
-# a2=input()
-# if a2 == 'e':
-#     print("That's right!\n")
-#     a2_result=1
-# else:
-#     a2_result = 0
-#     print('Ups! Not exaclty.\nThere is no Protocol manager in the Kernel\n')
-
-# input('Hit ENTER for next \n')
+# Question 2
+print('Question 2\nAn Operating System is divided into Kernel and User Interface\nIn the kernel, there are several managers, which of the following is NOT inside the kernel: ')
+a = 'a) File manager'
+b = 'b) Memory manager'
+c = 'c) I/O Manager'
+d = 'd) Process manager'
+e = 'e) Protocol manager'
+print(f'{a}\n{b}\n{c}\n{d}\n{e}')
+e = e.replace(' ','')
+e = e.translate({ord(")"):None})
+print(e)
+a2=input()
+print(a2)
+while a2 == 'manager':
+    print('Please specify which manager do you mean.')
+    a2=input()
+if a2 in e or a2=='protocol' or a2.upper():
+    print("That's right!\n")
+    a2_result=1
+else:
+    a2_result = 0
+    print('Ups! Not exaclty.\n\nThere is no Protocol manager in the Kernel\n')
+input('Hit ENTER for next \n')
 
 # # Question 3
 # print('Question 3\nThe following statement requires a Boolean answer.\n\nA compiler programming language can be run on different platforms, regardless for what system it was built into.')
