@@ -16,80 +16,86 @@ input ('Are you ready? ')
 print('')
 
 # Question 1
-print('Question 1\nWrite in binary the following number: 194 \n 128     64      32      16      8       4       2       1')
-a1=input('194 in binary: \nRemember to write in 8 bits, e.g. 20 = 00010100\n')
-if a1 == '11000010':
+
+import random
+number = random.randint(0, 255)
+number_in_binary = "{:08b}".format(number)
+print(f'Question 1\nWrite in binary the following number:{number}  \n 128     64      32      16      8       4       2       1')
+a1=input(f'{number} in binary: \nRemember to write in 8 bits, e.g. 20 = 00010100\n')
+if a1 == number_in_binary:
     a1_result = 1
     print(f'Correct, {name}!\n')
 else:
     a1_result = 0
     print('Not quite :( \nThe correct answer is 11000010\n')
 
-input('Next question? \n')
 
-# Question 2
-print('Question 2\nAn Operating System is divided into Kernel and User Interface\nIn the kernel, there are several managers, which of the following is NOT inside the kernel: ')
-a = 'a) File manager'
-b = 'b) Memory manager'
-c = 'c) I/O Manager'
-d = 'd) Process manager'
-e = 'e) Protocol manager'
-print(f'{a}\n{b}\n{c}\n{d}\n{e}')
-a2=input()
-if a2 == 'e':
-    print("That's right!\n")
-    a2_result=1
-else:
-    a2_result = 0
-    print('Ups! Not exaclty.\nThere is no Protocol manager in the Kernel\n')
 
-input('Hit ENTER for next \n')
+# input('Next question? \n')
 
-# Question 3
-print('Question 3\nThe following statement requires a Boolean answer.\n\nA compiler programming language can be run on different platforms, regardless for what system it was built into.')
-a3=input('Is it True or False? ')
-while a3!='False' and a3!='True':
-    print('Try again.\nThis question only accepts Boolean values.')
-    a3=input('Is it True or False? ')
-if a3 == 'False':
-    a3=False
-if a3==False:
-    print(f'You nailed it, {name}!\n')
-    a3_result=1
-else:
-    print("It is False.\nA compiler language writes for an specific OS.\nThe instructions in binary code in WindowsOS are different from MacOS.\n")
-    a3_result=0
+# # Question 2
+# print('Question 2\nAn Operating System is divided into Kernel and User Interface\nIn the kernel, there are several managers, which of the following is NOT inside the kernel: ')
+# a = 'a) File manager'
+# b = 'b) Memory manager'
+# c = 'c) I/O Manager'
+# d = 'd) Process manager'
+# e = 'e) Protocol manager'
+# print(f'{a}\n{b}\n{c}\n{d}\n{e}')
+# a2=input()
+# if a2 == 'e':
+#     print("That's right!\n")
+#     a2_result=1
+# else:
+#     a2_result = 0
+#     print('Ups! Not exaclty.\nThere is no Protocol manager in the Kernel\n')
 
-input('Next question? \n')
+# input('Hit ENTER for next \n')
 
-# Question 4
-print('Question 4\n  What would be the correct result for the following operation?')
-a4=input('24 // 10 = ')
-if a4=='2':
-    print('You are a genius!\n')
-    a4_result=1
-else:
-    print('The right naswer is 2.\nThe operator // gives the quotient when 24 is divided by 10, rounded to the next smallest whole number.\n')
-    a4_result=0
+# # Question 3
+# print('Question 3\nThe following statement requires a Boolean answer.\n\nA compiler programming language can be run on different platforms, regardless for what system it was built into.')
+# a3=input('Is it True or False? ')
+# while a3!='False' and a3!='True':
+#     print('Try again.\nThis question only accepts Boolean values.')
+#     a3=input('Is it True or False? ')
+# if a3 == 'False':
+#     a3=False
+# if a3==False:
+#     print(f'You nailed it, {name}!\n')
+#     a3_result=1
+# else:
+#     print("It is False.\nA compiler language writes for an specific OS.\nThe instructions in binary code in WindowsOS are different from MacOS.\n")
+#     a3_result=0
 
-input('You are almost there.\n')
+# input('Next question? \n')
 
-#Question 5
-print('Question 5\n\n#!/usr/bin/env python\nsum = 0\ncount = 0\n_____ count < 5:\n   n = input("Please specify a number: ")\n   sum = sum + n\n   count = count + 1\nprint("The sum is " + str(sum)\n\n')
-a5=(input('What is the missing command in the script?: \n'))
-if a5=='WHILE' or a5=='while' or a5=='While':
-    print('You are a truly PYTHONist!')
-    a5_result=1
-else:
-    print('The missing command is WHILE\nA while loop will repeat the instruction(s) inside the loop-body, as long a condition is True')
-    a5_result=0
-input('You are done!\n\nHit ENTER to see your score\n')
+# # Question 4
+# print('Question 4\n  What would be the correct result for the following operation?')
+# a4=input('24 // 10 = ')
+# if a4=='2':
+#     print('You are a genius!\n')
+#     a4_result=1
+# else:
+#     print('The right naswer is 2.\nThe operator // gives the quotient when 24 is divided by 10, rounded to the next smallest whole number.\n')
+#     a4_result=0
 
-#Score
-total_score=a1_result+a2_result+a3_result+a4_result+a5_result
-print(f'Your total score is {total_score}!')
-if total_score >= 3:
-    print("You passed the TEST!")
-else:
-    print("Let's review the slides one more time and try again\n")
+# input('You are almost there.\n')
+
+# #Question 5
+# print('Question 5\n\n#!/usr/bin/env python\nsum = 0\ncount = 0\n_____ count < 5:\n   n = input("Please specify a number: ")\n   sum = sum + n\n   count = count + 1\nprint("The sum is " + str(sum)\n\n')
+# a5=(input('What is the missing command in the script?: \n'))
+# if a5=='WHILE' or a5=='while' or a5=='While':
+#     print('You are a truly PYTHONist!')
+#     a5_result=1
+# else:
+#     print('The missing command is WHILE\nA while loop will repeat the instruction(s) inside the loop-body, as long a condition is True')
+#     a5_result=0
+# input('You are done!\n\nHit ENTER to see your score\n')
+
+# #Score
+# total_score=a1_result+a2_result+a3_result+a4_result+a5_result
+# print(f'Your total score is {total_score}!')
+# if total_score >= 3:
+#     print("You passed the TEST!")
+# else:
+#     print("Let's review the slides one more time and try again\n")
     
