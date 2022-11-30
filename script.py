@@ -59,18 +59,19 @@ else:
 input('Hit ENTER for next \n')
 
 # Question 3
-print('Question 3\nThe following statement requires a Boolean answer.\n\nA compiler programming language can be run on different platforms, regardless for what system it was built into.')
+print('Question 3\nThe following statement requires a Boolean answer.\n\nA compiler programming language has an open source code, thus it is easier to debug.')
 a3=input('Is it True or False? ')
+# a3=f'{a3.capitalize}'
 while a3!='False' and a3!='True':
     print('Try again.\nThis question only accepts Boolean values.')
-    a3=input('Is it True or False? ')
+    a3=input('A compiler programming language has an open source code, thus it is easier to debug.\nIs it True or False? ')
 if a3 == 'False':
     a3=False
 if a3==False:
     print(f'You nailed it, {name}!\n')
     a3_result=1
 else:
-    print("It is False.\nA compiler language writes for an specific OS.\nThe instructions in binary code in WindowsOS are different from MacOS.\n")
+    print("It is False.\nA compiler language translates the source code to machine language, therefore it is harder to debug than an interpreted language.\n")
     a3_result=0
 input('Next question? \n')
 
