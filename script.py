@@ -43,7 +43,6 @@ a2=input()
 # If you use a dictionary, you must use ascii codes instead of characters.
 a2=a2.translate(a2.maketrans("","",string.punctuation))
 a2 = f'{a2.upper()}'
-print(a2)
 while a2 == 'MANAGER':
     print('Please specify which manager do you mean.')
     a2=input()
@@ -68,10 +67,10 @@ while a3!='False' and a3!='True':
 if a3 == 'False':
     a3=False
 if a3==False:
-    print(f'You nailed it, {name}!\n')
+    print(f'\nYou nailed it, {name}!\n')
     a3_result=1
 else:
-    print("It is False.\nA compiler language translates the source code to machine language, therefore it is harder to debug than an interpreted language.\n")
+    print("\nIt is False.\nA compiler language translates the source code to machine language, therefore it is harder to debug than an interpreted language.\n")
     a3_result=0
 input('Next question? \n')
 
@@ -87,15 +86,16 @@ else:
 input('You are almost there.\n')
 
 # Question 5
-print('Question 5\n\n#!/usr/bin/env python\nsum = 0\ncount = 0\n_____ count < 5:\n   n = input("Please specify a number: ")\n   sum = sum + n\n   count = count + 1\nprint("The sum is " + str(sum)\n\n')
-a5=(input('What is the missing command in the script?: \n'))
-if a5=='WHILE' or a5=='while' or a5=='While':
-    print('You are a truly PYTHONist!')
+print('Question 5\n\n#!/usr/bin/env python\nsum = 0\ncount = 0\n_____ count < 5:\n   n = input("Please specify a number: ")\n   sum = sum + n\n   count = count + 1\nprint("The sum is " + str(sum)\n')
+a5=(input('What is the missing command in the script? '))
+a5 = f'{a5.upper}'
+if a5=='WHILE':
+    print('\nYou are a truly PYTHONist!')
     a5_result=1
 else:
-    print('The missing command is WHILE\nA while loop will repeat the instruction(s) inside the loop-body, as long a condition is True')
+    print(f'\n{a5} is not the correct answer.\nThe missing command is WHILE\nA while loop will repeat the instruction(s) inside the loop-body, as long a condition is True')
     a5_result=0
-input('You are done!\n\nHit ENTER to see your score\n')
+input('\nYou are done!\n\nHit ENTER to see your score\n')
 
 #Score
 total_score=a1_result+a2_result+a3_result+a4_result+a5_result
