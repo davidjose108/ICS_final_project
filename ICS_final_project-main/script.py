@@ -37,8 +37,8 @@ def question_1():
     else:
         a1_result = 0
         print(f'\nNot quite :( \nThe correct answer is {number_in_binary}\n')
-    return a1_result
     input('Next question? \n')
+    return a1_result
 
 
 
@@ -124,7 +124,7 @@ def question_5():
 total_score=question_1()+question_2()+question_3()+question_4()+question_5()
 print(f'Your total score is {total_score}!')
 if total_score >= 3:
-    print("You passed the TEST!")
+    print("\nYou passed the TEST!")
 else:
-    print("Let's review the slides one more time and try again\n")
+    print("\nLet's review the slides one more time and try again")
     
