@@ -42,6 +42,8 @@ user = user
 import random
 number = random.randint(0, 255)
 number_in_binary = "{:08b}".format(number)
+a = random.randint(0,1000)
+b = 10
 
 @app.route("/question_1")
 def question_1():
@@ -51,7 +53,7 @@ def question_1():
     else:
         a1 = ""
     return (
-        """<body>
+        """
         <h1>Question 1</h1>
         <h3>Write the following number in binary: </h3>"""
         f'{number}'
@@ -86,7 +88,7 @@ def question_1():
         <form action="" method="get">
             <input type="int" name="a1">
             <input type="submit" value="Submit answer">
-        </form></body>"""
+        </form>"""
         +""
         + a1     
     )
@@ -209,6 +211,24 @@ def answer_3():
             </form>""")
         a3_result=0
 
+@app.route("/question_4")
+def question_4():
+    a4 = request.args.get("a4", "")
+    if a4:
+        a4=answer_4()
+    else:
+        a4=""
+    return("""<body>
+        <h1>Question 4</h1>
+        <h3>What would be the correct result for the following operation?</h3>
+        <h3></h3>"""
+        """<form action="" method="get">"""
+                f'{a} // {b} =  '"""<input type="int" size="4">
+                <input type="submit" value="Submit">
+            </form>"""
+        + ""
+        + a4)
+        
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
