@@ -84,7 +84,7 @@ def question_3():
         print(f'\nYou nailed it, {name}!\n')
         a3_result=1
     else:
-        print("\nIt is False.\nA compiler language translates the source code to machine language, therefore it is harder to debug than an interpreted language.\n")
+        print("\nIt is False.\nPython is an interpreted language, which means the source code of a Python program is converted into bytecode that is then executed by the Python virtual machine.\n")
         a3_result=0
     input('Next question? \n')
     return(a3_result)
