@@ -114,6 +114,7 @@ def answer_1():
                     <input type="submit" value="Next question">
             </form>""")
 
+@app.route("/question_2")
 def question_2():
     a2 = request.args.get("a2","")
     import string
@@ -124,28 +125,48 @@ def question_2():
     return (
         """<body>
         <h1>Question 2</h1>
-        <h3>Write the following number in binary: </h3>"""nAn Operating System is divided into Kernel and User Interface\nIn the kernel, there are several managers, which of the following is NOT inside the kernel: \na) File manager\nb) Memory manager\nc) I/O Manager\nd) Process manager\ne) Protocol manager""")
-    a2=input()
+        <h3>An Operating System is divided into Kernel and User Interface.</h3> 
+        <h3>In the kernel, there are several managers, which of the following is NOT inside the kernel:</h3>
+        <h3>a) File Manager</h3>
+        <h3>b) Memory Manager</h3>
+        <h3>c) I/O Manager</h3>
+        <h3>d) Process Manager</h3>
+        <h3>e) Protocol Manager</h3>
+        <h3></h3>
+        <form action="" method="get">
+            <input type="text" name="a2">
+            <input type="submit" value="Submit answer">
+        </form></body>"""
+        +""
+        + a2)
     # The translate() method returns a string where some specified characters are replaced with the character described in a dictionary, or in a mapping table.
     # Use the maketrans() method to create a mapping table.
     # If a character is not specified in the dictionary/table, the character will not be replaced.
     # If you use a dictionary, you must use ascii codes instead of characters.
+    
+def answer_2():
+    import string
+    a2 = request.args.get("a2", "")
     a2=a2.translate(a2.maketrans("","",string.punctuation))
     a2 = f'{a2.upper()}'
-    while a2 == 'MANAGER':
-        print('Please specify which manager do you mean.')
-        a2=input()
-    if a2 == '':
-        a2_result = 0
-        print('Ups! Not exaclty.\nThe correct answer is E.\nThere is no Protocol manager in the Kernel\n')
-    elif a2=='E' or a2=="PROTOCOLMANAGER" or a2=='PROTOCOL':
-        print("That's right!\n")
+    # while a2 == 'MANAGER':
+    #     return('Please specify which manager do you mean.')
+    #     a2=input()
+    if a2=='E' or a2=="PROTOCOLMANAGER" or a2=='PROTOCOL':
         a2_result=1
+        return("""That's right!
+        <h3></h3> 
+            <form action="/question_2" method="get">
+                    <input type="submit" value="Next question">
+            </form>""")
     else:
         a2_result = 0
-        print('Ups! Not exaclty.\nThe correct answer is E.\nThere is no Protocol manager in the Kernel.\n')
-    input('Hit ENTER for next \n')
-    return(a2_result)
+        return("""Ups! Not exactly.The correct answer is E.There is no Protocol Manager in the Kernel.
+        <h3></h3> 
+            <form action="/question_2" method="get">
+                    <input type="submit" value="Next question">
+            </form>""")
+    
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
