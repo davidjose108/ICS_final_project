@@ -44,6 +44,7 @@ number = random.randint(0, 255)
 number_in_binary = "{:08b}".format(number)
 a = random.randint(0,1000)
 b = 10
+c=a//b
 
 @app.route("/question_1")
 def question_1():
@@ -222,12 +223,30 @@ def question_4():
         <h1>Question 4</h1>
         <h3>What would be the correct result for the following operation?</h3>
         <h3></h3>"""
-        """<form action="" method="get">"""
-                f'{a} // {b} =  '"""<input type="int" size="4">
+        
+        """<h3></h3>
+            <form action="" method="get">"""
+                f'{a} // {b} =  '"""<input type="int" name="a4" size="4">
                 <input type="submit" value="Submit">
             </form>"""
         + ""
         + a4)
+
+def answer_4():
+    a4 = request.args.get("a4", "")
+    a4 = int(a4)
+    if a4 == c:
+        return(
+            f'{a4}'
+            """<h3>You are a genius!</h3>"""
+            )
+        a4_result=1
+    else:
+        return(
+            f'{a4}'
+            """Sadly, the right answer is """ f'{c}'
+            """. The operator // gives the quotient when """ f'{a}' """ is divided by 10, rounded to the next smallest whole number.""")
+        a4_result=0
         
 
 if __name__ == "__main__":
