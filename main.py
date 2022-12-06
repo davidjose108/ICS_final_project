@@ -91,7 +91,6 @@ def question_1():
         + a1     
     )
 
-    
 def answer_1():
     a1 = request.args.get("a1", "")
     user = request.args.get("user","")
@@ -156,17 +155,60 @@ def answer_2():
         a2_result=1
         return("""That's right!
         <h3></h3> 
-            <form action="/question_2" method="get">
+            <form action="/question_3" method="get">
                     <input type="submit" value="Next question">
             </form>""")
     else:
         a2_result = 0
         return("""Ups! Not exactly.The correct answer is E.There is no Protocol Manager in the Kernel.
         <h3></h3> 
-            <form action="/question_2" method="get">
+            <form action="/question_3" method="get">
                     <input type="submit" value="Next question">
             </form>""")
-    
+
+@app.route("/question_3")
+def question_3():
+    a3 = request.args.get("a3","")
+    if a3:
+        a3= answer_3()
+    else:
+        a3 = ""
+    return (
+        """<body>
+        <h1>Question 3</h1>
+        <h3>Is the following statement true or false?</h3>
+        <h3></h3>
+        <h3>"Python uses a compiler to translate high level language to machine leve language."</h3> 
+        <form action="" method="get">
+                Remember to submit a Boolean answer <input type="text" name="a3">
+                <input type="submit" value="Submit">
+            </form>"""
+        + ""
+        + a3)
+
+def answer_3():
+    a3 = request.args.get("a3", "")
+    while a3!='False' and a3!='True':
+        return ('Try again.\nThis question only accepts Boolean values.')
+        a3= ""
+    if a3 == 'False':
+        a3=False
+    if a3==False:
+        return (f'You nailed it, {user}!'
+        """<h3></h3> 
+            <form action="/question_4" method="get">
+                    <input type="submit" value="Next question">
+            </form>""")
+        a3_result=1
+    else:
+        return(
+            """<h3>It is False.</h3> 
+            <h3>Python is an interpreted language, which means the source code of a Python program is converted into bytecode that is then executed by the Python virtual machine.</h3>
+            <form action="/question_4" method="get">
+                    <input type="submit" value="Next question">
+            </form>""")
+        a3_result=0
+
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
