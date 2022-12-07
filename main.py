@@ -4,15 +4,17 @@ from flask import request, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-
+total_score = 0
 
 
 app = Flask(__name__)
 
 user = ""
+the_name = ""
 @app.route("/")
 def index():
-    user = request.args.get("user", "")
+    global user
+    user = request.args.get("user","")
     if user:
         user = introduction(user)
     else:
@@ -30,6 +32,9 @@ def index():
     )
 
 def introduction(user):
+    # user = request.args.get("user","")
+    global the_name
+    the_name = user
     return (
         f'Welcome {user.capitalize()}! You will be presented with five questions related to Computer Sciences. If you get more than three questions right, you passed!'
         """<h1></h1>
@@ -45,8 +50,11 @@ a = random.randint(0,1000)
 b = 10
 c=a//b
 
+
 @app.route("/question_1")
 def question_1():
+    global total_score
+    total_score = 0
     a1 = request.args.get("a1", "") 
     if a1:
         a1 = answer_1()
@@ -94,26 +102,30 @@ def question_1():
     )
 
 def answer_1():
+    global total_score
+    global user
+    global the_name
     a1 = request.args.get("a1", "")
-    user = request.args.get("user","")
     if a1 == number_in_binary:
-        a1_result = 1
+        total_score = total_score + 1
         return(
             """<h1></h1>"""
-            f'Correct, {user}!'
+            f'Correct, {the_name}!'
                 """<h1></h1>
                 <form action="/question_2" method="get">
                         <input type="submit" value="Next question">
-                </form>""")
+                </form>"""
+            
+            )
     else:
-        a1_result = 0
         return(
             """<h3>Not quite :( The correct answer is </h3>""" 
             f'{ number_in_binary }'
             """<h3></h3>""" 
             """<form action="/question_2" method="get">
                     <input type="submit" value="Next question">
-            </form>""")
+            </form>"""
+            )
 
 @app.route("/question_2")
 def question_2():
@@ -146,6 +158,7 @@ def question_2():
     # If you use a dictionary, you must use ascii codes instead of characters.
     
 def answer_2():
+    global total_score
     import string
     a2 = request.args.get("a2", "")
     a2=a2.translate(a2.maketrans("","",string.punctuation))
@@ -154,14 +167,13 @@ def answer_2():
     #     return('Please specify which manager do you mean.')
     #     a2=input()
     if a2=='E' or a2=="PROTOCOLMANAGER" or a2=='PROTOCOL':
-        a2_result=1
+        total_score = total_score + 1
         return("""That's right!
         <h3></h3> 
             <form action="/question_3" method="get">
                     <input type="submit" value="Next question">
             </form>""")
     else:
-        a2_result = 0
         return("""Ups! Not exactly.The correct answer is E.There is no Protocol Manager in the Kernel.
         <h3></h3> 
             <form action="/question_3" method="get">
@@ -189,6 +201,7 @@ def question_3():
         + a3)
 
 def answer_3():
+    global total_score
     a3 = request.args.get("a3", "")
     while a3!='False' and a3!='True':
         return ('Try again.\nThis question only accepts Boolean values.')
@@ -196,12 +209,12 @@ def answer_3():
     if a3 == 'False':
         a3=False
     if a3==False:
+        total_score = total_score + 1
         return (f'You nailed it, {user}!'
         """<h3></h3> 
             <form action="/question_4" method="get">
                     <input type="submit" value="Next question">
             </form>""")
-        a3_result=1
     else:
         return(
             """<h3>It is False.</h3> 
@@ -209,7 +222,7 @@ def answer_3():
             <form action="/question_4" method="get">
                     <input type="submit" value="Next question">
             </form>""")
-        a3_result=0
+        
 
 @app.route("/question_4")
 def question_4():
@@ -232,9 +245,11 @@ def question_4():
         + a4)
 
 def answer_4():
+    global total_score
     a4 = request.args.get("a4", "")
     a4 = int(a4)
     if a4 == c:
+        total_score = total_score + 1
         return(
             f'{a4}'
             """You are a genius!"""
@@ -242,17 +257,17 @@ def answer_4():
             <form action="/question_5" method="get">
                     <input type="submit" value="Click for the last question!">
             </form>""")
-        a4_result=1
+        
     else:
         return(
             f'{a4}'
-            """Sadly, the right answer is """ f'{c}'
+            """ is not the correct answer. The right answer is """ f'{c}'
             """. The operator // gives the quotient when """ f'{a}' """ is divided by 10, rounded to the next smallest whole number."""
             """<h3></h3> 
             <form action="/question_5" method="get">
                     <input type="submit" value="Click for the last question!">
             </form>""")
-        a4_result=0
+        
 
 @app.route("/question_5")
 def question_5():
@@ -291,11 +306,13 @@ def question_5():
         + a5)
 
 def answer_5():
+    global total_score
     import string
     a5 = request.args.get("a5", "")
     a5 = f'{a5.upper()}'
     a5=a5.translate(a5.maketrans("","",string.punctuation))
     if a5=='WHILE':
+        total_score = total_score + 1
         return(
             f'{a5}'
             """You are a truly PYTHONist!"""
@@ -303,7 +320,8 @@ def answer_5():
             <form action="/final_score" method="get">
                     <input type="submit" value="Click to see your results!">
             </form>""")
-        a5_result=1
+        
+        
     else:
         return(
             f'{a5}'""" is not the correct answer."""
@@ -312,7 +330,24 @@ def answer_5():
             <form action="/final_score" method="get">
                     <input type="submit" value="Click to see your results!">
             </form>""")
-        a4_result=0
+        
+
+
+@app.route("/final_score")
+def final_score():
+    return (f'{total_score}')
+    # print(a1_result)
+    # final_score = a1_result + a2_result + a3_result + a4_result + a5_result
+    # if final_score >= 3:
+    #     return("""<h1>You passed the TEST!</h1>""")
+    # else:
+    #     return("""<h1>Let's review the slides one more time and try again</h1>
+    #     <form action="/" method="get">
+    #                 <input type="submit" value="Try again">
+    #         </form>""")
+
+
+
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
