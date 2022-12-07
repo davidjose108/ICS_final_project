@@ -38,7 +38,6 @@ def introduction(user):
         </form>"""
         ) 
 
-user = user
 import random
 number = random.randint(0, 255)
 number_in_binary = "{:08b}".format(number)
@@ -179,9 +178,9 @@ def question_3():
     return (
         """<body>
         <h1>Question 3</h1>
-        <h3>Is the following statement true or false?</h3>
+        <h3>Is the following statement True or False?</h3>
         <h3></h3>
-        <h3>"Python uses a compiler to translate high level language to machine leve language."</h3> 
+        <h3>"Python uses a compiler to translate high level language to machine level language."</h3> 
         <form action="" method="get">
                 Remember to submit a Boolean answer <input type="text" name="a3">
                 <input type="submit" value="Submit">
@@ -238,16 +237,82 @@ def answer_4():
     if a4 == c:
         return(
             f'{a4}'
-            """<h3>You are a genius!</h3>"""
-            )
+            """You are a genius!"""
+            """<h3></h3> 
+            <form action="/question_5" method="get">
+                    <input type="submit" value="Click for the last question!">
+            </form>""")
         a4_result=1
     else:
         return(
             f'{a4}'
             """Sadly, the right answer is """ f'{c}'
-            """. The operator // gives the quotient when """ f'{a}' """ is divided by 10, rounded to the next smallest whole number.""")
+            """. The operator // gives the quotient when """ f'{a}' """ is divided by 10, rounded to the next smallest whole number."""
+            """<h3></h3> 
+            <form action="/question_5" method="get">
+                    <input type="submit" value="Click for the last question!">
+            </form>""")
         a4_result=0
+
+@app.route("/question_5")
+def question_5():
+    a5 = request.args.get("a5", "")
+    if a5:
+        a5=answer_5()
+    else:
+        a5=""
+    return("""<head>
+    <style type="text/css">
+    <!--
+    .tab { margin-left: 40px; }
+    -->
+    </style>
+    </head>
+    <body>
+        <h1>Question 5</h1>
+        <h3>What is the missing command in this script? </h3>
+        <h3></h3>
+        <p>#!/usr/bin/env python</p>
+        <p>sum = 0</p>
+        <p>count = 0</p>
+        <p>_____ count < 5:</p>
+        <p class="tab">    n = input("Please specify a number: ")
+        <p class="tab">   sum = sum + n
+        <p class="tab">   count = count + 1
+        <p class="tab">    print("The sum is " + str(sum))</p3>
+        """
         
+        """<h3></h3>
+            <form action="" method="get">"""
+                """<input type="text" name="a5" size="4">
+                <input type="submit" value="Submit">
+            </form>"""
+        + ""
+        + a5)
+
+def answer_5():
+    import string
+    a5 = request.args.get("a5", "")
+    a5 = f'{a5.upper()}'
+    a5=a5.translate(a5.maketrans("","",string.punctuation))
+    if a5=='WHILE':
+        return(
+            f'{a5}'
+            """You are a truly PYTHONist!"""
+            """<h3></h3> 
+            <form action="/final_score" method="get">
+                    <input type="submit" value="Click to see your results!">
+            </form>""")
+        a5_result=1
+    else:
+        return(
+            f'{a5}'""" is not the correct answer."""
+            """The missing command is WHILE. A while loop will repeat the instruction(s) inside the loop-body, as long a condition is True"""
+            """<h3></h3> 
+            <form action="/final_score" method="get">
+                    <input type="submit" value="Click to see your results!">
+            </form>""")
+        a4_result=0
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
