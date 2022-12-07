@@ -1,4 +1,14 @@
+# ReDI School 
+# Introduction to Computer Sciences_Hybrid
+# Final Project: Multichoice Test
+# Name: David Garrido de Sousa
 
+# The project contemplates the result of five questions related to CS. 
+# If the user gets right 3 or more questions, it is a PASS.
+# Otherwise, it is a FAIL. 
+
+
+# Set up
 from flask import Flask
 from flask import request, render_template
 from flask_wtf import FlaskForm
@@ -9,14 +19,19 @@ total_score = 0
 
 app = Flask(__name__)
 
+
+
+# Introduction 
 user = ""
 the_name = ""
+
 @app.route("/")
 def index():
     global user
     user = request.args.get("user","")
+    loc_user = ""
     if user:
-        user = introduction(user)
+        loc_user = introduction(user)
     else:
         user = ""
     return (
@@ -28,13 +43,13 @@ def index():
                 <input type="submit" value="Submit">
             </form>"""
         + ""
-        + user
+        + loc_user
     )
 
 def introduction(user):
-    # user = request.args.get("user","")
-    global the_name
-    the_name = user
+    user = request.args.get("user","")
+    # global the_name
+    # the_name = user
     return (
         f'Welcome {user.capitalize()}! You will be presented with five questions related to Computer Sciences. If you get more than three questions right, you passed!'
         """<h1></h1>
@@ -53,6 +68,7 @@ c=a//b
 
 @app.route("/question_1")
 def question_1():
+    global user
     global total_score
     total_score = 0
     a1 = request.args.get("a1", "") 
@@ -66,7 +82,7 @@ def question_1():
         <h3>Write the following number in binary: </h3>"""
         f'{number}'
         """<h1></h1>
-        <a href="https://sites.google.com/site/syhsguzmancsp/creative-projects/binary-numbers">Click on the link below for refresh</a>
+        <a href="https://sites.google.com/site/syhsguzmancsp/creative-projects/binary-numbers">Click on the link for refresh</a>
         <h4>Example</h4>
         <table>
             <tr>
@@ -98,19 +114,18 @@ def question_1():
             <input type="submit" value="Submit answer">
         </form>"""
         +""
-        + a1     
+        + a1    
     )
 
 def answer_1():
     global total_score
     global user
-    global the_name
     a1 = request.args.get("a1", "")
     if a1 == number_in_binary:
         total_score = total_score + 1
         return(
             """<h1></h1>"""
-            f'Correct, {the_name}!'
+            f'Correct, {user.capitalize()}!'
                 """<h1></h1>
                 <form action="/question_2" method="get">
                         <input type="submit" value="Next question">
@@ -119,8 +134,8 @@ def answer_1():
             )
     else:
         return(
-            """<h3>Not quite :( The correct answer is </h3>""" 
-            f'{ number_in_binary }'
+            """Not quite :( The correct answer is """ 
+            f'{number_in_binary}'
             """<h3></h3>""" 
             """<form action="/question_2" method="get">
                     <input type="submit" value="Next question">
@@ -201,6 +216,7 @@ def question_3():
         + a3)
 
 def answer_3():
+    global user
     global total_score
     a3 = request.args.get("a3", "")
     while a3!='False' and a3!='True':
@@ -210,7 +226,7 @@ def answer_3():
         a3=False
     if a3==False:
         total_score = total_score + 1
-        return (f'You nailed it, {user}!'
+        return (f'You nailed it, {user.capitalize()}!'
         """<h3></h3> 
             <form action="/question_4" method="get">
                     <input type="submit" value="Next question">
@@ -251,7 +267,6 @@ def answer_4():
     if a4 == c:
         total_score = total_score + 1
         return(
-            f'{a4}'
             """You are a genius!"""
             """<h3></h3> 
             <form action="/question_5" method="get">
@@ -285,7 +300,8 @@ def question_5():
     </head>
     <body>
         <h1>Question 5</h1>
-        <h3>What is the missing command in this script? </h3>
+        <h3>The following script asks for five numbers to the user and prints the total sum. </h3>
+        <h3>What is the missing statement in this script? </h3>
         <h3></h3>
         <p>#!/usr/bin/env python</p>
         <p>sum = 0</p>
@@ -294,7 +310,7 @@ def question_5():
         <p class="tab">    n = input("Please specify a number: ")
         <p class="tab">   sum = sum + n
         <p class="tab">   count = count + 1
-        <p class="tab">    print("The sum is " + str(sum))</p3>
+        <p>print("The sum is " + str(sum))<p>
         """
         
         """<h3></h3>
@@ -314,7 +330,6 @@ def answer_5():
     if a5=='WHILE':
         total_score = total_score + 1
         return(
-            f'{a5}'
             """You are a truly PYTHONist!"""
             """<h3></h3> 
             <form action="/final_score" method="get">
@@ -325,7 +340,7 @@ def answer_5():
     else:
         return(
             f'{a5}'""" is not the correct answer."""
-            """The missing command is WHILE. A while loop will repeat the instruction(s) inside the loop-body, as long a condition is True"""
+            """The missing statement is WHILE. A while loop will repeat the instruction(s) inside the loop-body, as long a condition is True"""
             """<h3></h3> 
             <form action="/final_score" method="get">
                     <input type="submit" value="Click to see your results!">
@@ -335,16 +350,23 @@ def answer_5():
 
 @app.route("/final_score")
 def final_score():
-    return (f'{total_score}')
-    # print(a1_result)
-    # final_score = a1_result + a2_result + a3_result + a4_result + a5_result
-    # if final_score >= 3:
-    #     return("""<h1>You passed the TEST!</h1>""")
-    # else:
-    #     return("""<h1>Let's review the slides one more time and try again</h1>
-    #     <form action="/" method="get">
-    #                 <input type="submit" value="Try again">
-    #         </form>""")
+    global total_score
+    global user
+    if total_score >= 3:
+        return (
+        """Your total score is """f'{total_score}'
+        """<h1></h1>"""
+        """Congratulations, """ f'{user.capitalize()}'"""! You have passed Introduction to Computer Sciences!"""
+        """<marquee><h1>Let's celebrate!</h1></marquee>""")
+    else:
+        return(
+        """Your total score is """ f'{total_score}'
+        """<h1></h1>"""
+        """<h1>No problem. Let's review the slides one more time and try again</h1>"""
+        """<h1></h1>"""
+        """<form action="/" method="get">
+                    <input type="submit" value="Try again">
+            </form>""")
 
 
 
