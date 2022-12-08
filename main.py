@@ -8,15 +8,15 @@
 # Otherwise, it is a FAIL. 
 
 
-# Set up
+# Set up of the library and necessary extensions
 from flask import Flask
 from flask import request, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-total_score = 0
 
 
+# Create this python file into web application
 app = Flask(__name__)
 
 
@@ -58,14 +58,16 @@ def introduction(user):
         </form>"""
         ) 
 
+# Define variables that will be used in different questions
 import random
+total_score = 0
 number = random.randint(0, 255)
 number_in_binary = "{:08b}".format(number)
 a = random.randint(0,1000)
 b = 10
 c=a//b
 
-
+# Question 1
 @app.route("/question_1")
 def question_1():
     global user
@@ -142,6 +144,7 @@ def answer_1():
             </form>"""
             )
 
+# Question 2
 @app.route("/question_2")
 def question_2():
     a2 = request.args.get("a2","")
@@ -167,10 +170,6 @@ def question_2():
         </form></body>"""
         +""
         + a2)
-    # The translate() method returns a string where some specified characters are replaced with the character described in a dictionary, or in a mapping table.
-    # Use the maketrans() method to create a mapping table.
-    # If a character is not specified in the dictionary/table, the character will not be replaced.
-    # If you use a dictionary, you must use ascii codes instead of characters.
     
 def answer_2():
     global total_score
@@ -195,6 +194,7 @@ def answer_2():
                     <input type="submit" value="Next question">
             </form>""")
 
+# Question 3
 @app.route("/question_3")
 def question_3():
     a3 = request.args.get("a3","")
@@ -239,7 +239,7 @@ def answer_3():
                     <input type="submit" value="Next question">
             </form>""")
         
-
+# Question 4
 @app.route("/question_4")
 def question_4():
     a4 = request.args.get("a4", "")
@@ -283,7 +283,7 @@ def answer_4():
                     <input type="submit" value="Click for the last question!">
             </form>""")
         
-
+# Question 5
 @app.route("/question_5")
 def question_5():
     a5 = request.args.get("a5", "")
@@ -346,8 +346,7 @@ def answer_5():
                     <input type="submit" value="Click to see your results!">
             </form>""")
         
-
-
+#Final score
 @app.route("/final_score")
 def final_score():
     global total_score
@@ -367,8 +366,6 @@ def final_score():
         """<form action="/" method="get">
                     <input type="submit" value="Try again">
             </form>""")
-
-
 
 
 if __name__ == "__main__":
